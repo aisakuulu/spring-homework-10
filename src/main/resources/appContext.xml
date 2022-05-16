@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="peaksoft.spring"/>
+    <context:property-placeholder location="application.properties"/>
+
+    <bean id="horseBean" class="peaksoft.spring.Horse" init-method="animalPlus" destroy-method="animalMinus">
+        <property name="name" value="${horseBean.name}"/>
+        <property name="color" value="${horseBean.color}"/>
+        <property name="type" value="${horseBean.type}"/>
+    </bean>
+
+    <bean id="dogBean" class="peaksoft.spring.Dog" init-method="animalPlus" destroy-method="animalMinus">
+        <property name="name" value="${dogBean.name}"/>
+        <property name="color" value="${dogBean.color}"/>
+        <property name="type" value="${dogBean.type}"/>
+    </bean>
+
+    <bean id="firstPersonBean" class="peaksoft.spring.Person" >
+        <property name="name" value="${firstPersonBean.name}"/>
+        <property name="age" value="${firstPersonBean.age}"/>
+        <property name="animal" ref="horseBean"/>
+    </bean>
+
+    <bean id="secondPersonBean" class="peaksoft.spring.Person" >
+        <property name="name" value="${secondPersonBean.name}"/>
+        <property name="age" value="${secondPersonBean.age}"/>
+        <property name="animal" ref="dogBean"/>
+    </bean>
+
+
+
+
+</beans>
